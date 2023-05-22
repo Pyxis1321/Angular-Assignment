@@ -1,0 +1,11 @@
+<div *ngIf="contracts">
+	<div class="grid grid-cols-4 gap-4">
+		<button *ngFor="let contract of contracts" class="p-4 border-2 bg-gray-100 hover:bg-gray-300 border-gray-800 rounded-3xl w-full grid flex-cols-1 justify-center items-center">
+			<div class="text-center">Registration Number: <span class="font-bold">{{contract.registration_number}}</span></div>
+			<div class="text-center">Customer: <span class="font-bold">{{contract.client.name + ' ' + contract.client.surename}}</span></div>
+			<div class="text-center" *ngFor="let personel of contract.contract_administrator; let i=index">
+				Contract leader {{i + 1}}: <span class="font-bold">{{personel.name + ' ' + personel.surename}}</span>
+			</div>
+		</button>
+	</div>
+</div>
