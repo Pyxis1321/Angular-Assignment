@@ -10,7 +10,8 @@ import { Customer, Personel } from 'src/app/models/customer.model';
 })
 export class MainPageComponent {
   passContracts: Array<Contract> = contracts
-   
+  passCustomers: Array<Customer> = customers;
+  passPersonel: Array<Personel> = personel;
 }
 
 /*
