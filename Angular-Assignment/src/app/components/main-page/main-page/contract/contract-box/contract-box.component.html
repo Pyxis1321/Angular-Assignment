@@ -1,9 +1,9 @@
 <mat-tab-group>
 	<mat-tab label="Contracts">
 		<div *ngIf="contracts">
-			<div class="grid grid-cols-4 gap-4 pt-5">
+			<div class="grid xl:grid-cols-5 lg:grid-cols-3 md:grid-cols-2 gap-4 sm:grid-cols-1 pt-5">
 				<button [matMenuTriggerFor]="info_pannel" *ngFor="let contract of contracts"
-					class="p-4 border-2 bg-gray-100 hover:bg-gray-300 border-gray-800 rounded-3xl w-full grid flex-cols-1 justify-center items-center">
+					class="p-4 border-2 hover:bg-gray-300 border-orange-600 rounded-3xl w-full grid flex-cols-1 justify-center items-center">
 					<div class="text-center">Registration Number: <span
 							class="font-bold">{{contract.registration_number}}</span></div>
 					<div class="text-center">Customer: <span class="font-bold">{{contract.client.name + ' ' +
@@ -23,17 +23,16 @@
 							</div>
 							<hr class="w-10/12 h-px mx-auto bg-gray-200 border-0 dark:bg-gray-700">
 
-							<button (click)="openBottomSheet(contract.client)" class="text-center p-2 hover:bg-gray-200">Client: <span
+							<button (click)="openBottomSheetCustomer(contract.client)" class="text-center p-2 hover:bg-gray-200">Client: <span
 									class="font-bold">{{contract.client.name + ' ' +
 									contract.client.surename}}</span></button>
 							<hr class="w-10/12 h-px mx-auto bg-gray-200 border-0 dark:bg-gray-700">
-
-							<button class="text-center p-2 hover:bg-gray-200"
-								*ngFor="let personel of contract.contract_administrator; let i=index">
-								Contract leader {{i + 1}}: <span class="font-bold">{{personel.name + ' ' +
-									personel.surename}}</span>
-							</button>
-							<hr class="w-10/12 h-px mx-auto bg-gray-200 border-0 dark:bg-gray-700">
+							
+							<div *ngFor="let personel of contract.contract_administrator; let i=index">
+								<button (click)="openBottomSheetPersonel(contract.contract_administrator[i])" class="text-center p-2 hover:bg-gray-200">Contract leader {{i + 1}}: <span class="font-bold">{{personel.name + ' ' +
+									personel.surename}}</span></button>
+									<hr class="w-10/12 h-px mx-auto bg-gray-200 border-0 dark:bg-gray-700">
+							</div>
 
 							<div class="text-center p-2">Date of creation: <span
 									class="font-bold">{{contract.date_of_creation.getDate() + '-' +
@@ -59,10 +58,10 @@
 		</div>
 	</mat-tab>
 	<mat-tab label="Customers">
-		<div *ngIf="customers">
+		<div *ngIf="customers" class="pt-4">
 			<div *ngFor="let customer of customers" class="p-2">
 				<mat-accordion>
-					<mat-expansion-panel hideToggle class="border-2">
+					<mat-expansion-panel hideToggle class="border-2 border-orange-600">
 						<mat-expansion-panel-header>
 							<mat-icon>expand_more</mat-icon>
 							<mat-panel-title>
@@ -83,10 +82,10 @@
 		</div>
 	</mat-tab>
 	<mat-tab label="Personel">
-		<div *ngIf="personel">
+		<div *ngIf="personel" class="pt-4">
 			<div *ngFor="let employe of personel" class="p-2">
 				<mat-accordion>
-					<mat-expansion-panel hideToggle class="border-2">
+					<mat-expansion-panel hideToggle class="border-2 border-orange-600">
 						<mat-expansion-panel-header>
 							<mat-icon>expand_more</mat-icon>
 							<mat-panel-title>
@@ -96,6 +95,7 @@
 								{{ employe.email }}
 							</mat-panel-description>
 						</mat-expansion-panel-header>
+						<div class="text-lg p-1">Employe ID: <span class="font-bold">{{ employe.pesonel_id }}</span></div>
 						<div class="text-lg p-1">Full name: <span class="font-bold">{{ employe.name + ' ' + employe.surename }}</span></div>
 						<div class="text-lg p-1">Email: <span class="font-bold">{{ employe.email }}</span></div>
 						<div class="text-lg p-1">Phone number: <span class="font-bold">{{ employe.phone_number }}</span></div>

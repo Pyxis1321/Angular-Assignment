@@ -51,7 +51,8 @@ let personel1: Personel = {
   phone_number: '+42093248234',
   birth_number: '123123/3232',
   age: 52,
-  pesonel_id: 1
+  pesonel_id: 1,
+  personel_photo: './assets/profile.jpg'
 }
 
 let personel2: Personel = {
@@ -61,7 +62,8 @@ let personel2: Personel = {
   phone_number: '+42093248234',
   birth_number: '123123/3232',
   age: 44,
-  pesonel_id: 2
+  pesonel_id: 2,
+  personel_photo: './assets/profile.jpg'
 }
   
 let contract1: Contract = {

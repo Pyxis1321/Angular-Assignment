@@ -1,1 +1,53 @@
-<p>person-detail works!</p>
+<div *ngIf="data.customer">
+	<div class="p-5">
+		<div class="flex py-2">
+			<mat-icon class="text-orange-400">account_box</mat-icon>
+			<div class="text-xl pl-2">Full name: <span class="font-bold">{{data.customer.name + ' ' +
+					data.customer.surename}}</span></div>
+		</div>
+		<div class="flex py-2">
+			<mat-icon class="text-orange-400"> email</mat-icon>
+			<div class="text-xl pl-2">Email: <span class="font-bold">{{data.customer.email}}</span></div>
+		</div>
+		<div class="flex py-2">
+			<mat-icon class="text-orange-400"> contact_phone</mat-icon>
+			<div class="text-xl pl-2">Phone number: <span class="font-bold">{{data.customer.phone_number}}</span></div>
+		</div>
+		<div class="flex py-2">
+			<mat-icon class="text-orange-400">fingerprint</mat-icon>
+			<div class="text-xl pl-2">Birth number: <span class="font-bold">{{data.customer.birth_number}}</span></div>
+		</div>
+		<div class="flex py-2">
+			<mat-icon class="text-orange-400">face</mat-icon>
+			<div class="text-xl pl-2">Age: <span class="font-bold">{{data.customer.age}}</span></div>
+		</div>
+	</div>
+</div>
+
+<div *ngIf="data.personel">
+	<div class="p-5 flex">
+		<div class="">
+			<div class="flex py-2">
+				<mat-icon class="text-orange-400">account_box</mat-icon>
+				<div class="text-xl pl-2">Full name: <span class="font-bold">{{data.personel.name + ' ' +
+						data.personel.surename}}</span></div>
+			</div>
+			<div class="flex py-2">
+				<mat-icon class="text-orange-400"> email</mat-icon>
+				<div class="text-xl pl-2">Email: <span class="font-bold">{{data.personel.email}}</span></div>
+			</div>
+			<div class="flex py-2">
+				<mat-icon class="text-orange-400"> contact_phone</mat-icon>
+				<div class="text-xl pl-2">Phone number: <span class="font-bold">{{data.personel.phone_number}}</span>
+				</div>
+			</div>
+			<div class="flex py-2">
+				<mat-icon class="text-orange-400">assignment_ind</mat-icon>
+				<div class="text-xl pl-2">Employe id: <span class="font-bold">{{data.personel.pesonel_id}}</span></div>
+			</div>
+		</div>
+		<div class="pl-5 mx-auto">
+			<img src={{data.personel.personel_photo}} class="rounded-3xl">
+		</div>
+	</div>
+</div>

@@ -16,9 +16,19 @@ export class ContractBoxComponent {
 
   constructor(private matBottomSheet: MatBottomSheet){}
 
-  openBottomSheet(person: Person){
+  openBottomSheetCustomer(selecterCustomer: Customer){
     this.matBottomSheet.open(PersonDetailComponent, {
-      data: person,
+      data: {
+        customer: selecterCustomer
+      }
+    });
+  }
+
+  openBottomSheetPersonel(selecterPersonel: Personel){
+    this.matBottomSheet.open(PersonDetailComponent, {
+      data: {
+        personel: selecterPersonel
+      }
     });
   }
 }
