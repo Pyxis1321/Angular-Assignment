@@ -24,6 +24,21 @@ export class MainPageComponent {
   saveEmployee(employee: Personel){
     this.passPersonel.push(employee)
   }
+
+  onDeleteContract(deleteContract: Contract){
+    let index = this.passContracts.findIndex(x => x.registration_number === deleteContract.registration_number)
+    this.passContracts.splice(index,1)
+  }
+
+  onDeleteCustomer(deleteCustomer: Customer){
+    let index = this.passCustomers.findIndex(x => x.customer_id === deleteCustomer.customer_id)
+    this.passCustomers.splice(index,1)
+  }
+
+  onDeleteEmployee(deleteEmployee: Personel){
+    let index = this.passPersonel.findIndex(x => x.personel_id === deleteEmployee.personel_id)
+    this.passPersonel.splice(index,1)
+  }
 }
 
 /*
@@ -31,6 +46,7 @@ export class MainPageComponent {
 */
 
 let customer1: Customer = {
+  customer_id: 1,
   name: 'Mark',
   surename: 'Johnson',
   email: 'mark.johnson@gmail.com',
@@ -40,6 +56,7 @@ let customer1: Customer = {
 }
 
 let customer2: Customer = {
+  customer_id: 2,
   name: 'Rick',
   surename: 'Stat',
   email: 'Rick.Stat@gmail.com',
@@ -48,6 +65,7 @@ let customer2: Customer = {
   age: 48
 }
 let customer3: Customer = {
+  customer_id: 3,
   name: 'John',
   surename: 'Clarkson',
   email: 'John.Clarkson@gmail.com',

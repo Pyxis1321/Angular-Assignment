@@ -59,7 +59,7 @@
 										<mat-label>Employee</mat-label>
 										<mat-select formControlName="employees" multiple required>
 											<mat-option *ngFor="let employee of personel"
-												[value]="employee">{{employee.surename
+												[value]="employee">{{employee.name
 												+ ' ' + employee.surename}}</mat-option>
 										</mat-select>
 									</mat-form-field>

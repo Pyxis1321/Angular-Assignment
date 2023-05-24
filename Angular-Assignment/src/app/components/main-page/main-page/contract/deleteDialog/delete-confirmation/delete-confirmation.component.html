@@ -1,0 +1,12 @@
+<div class="flex flex-col p-5">
+	<div class="flex float-right justify-end pb-2">
+		<button (click)="onClose()" class="hover:bg-gray-200 pt-2 px-2 rounded-full">
+			<mat-icon>close</mat-icon>
+		</button>
+	</div>
+	<div class="text-xl text-center w-full">Are you sure you want to delete this?</div>
+	<div class="grid grid-cols-2 gap-4 w-11/12 mx-auto pt-5">
+		<button (click)="onTrue()" class="p-2 border-2 border-orange-600 rounded-full hover:bg-gray-200">Yes</button>
+		<button (click)="onFalse()" class="p-2 border-2 border-orange-600 rounded-full hover:bg-gray-200">No</button>
+	</div>
+</div>

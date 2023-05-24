@@ -34,6 +34,7 @@ export class HeaderComponent {
   })
 
   customerForm = this.fm.group({
+    customer_id: new FormControl<number | null>(null),
     name: new FormControl<string | null>(null),
     surename: new FormControl<string | null>(null),
     email: new FormControl<string | null>(null),
@@ -87,6 +88,12 @@ export class HeaderComponent {
   }
 
   onSaveCustomer(){
+    if (this.customers) {
+      let lastCustomer = Array.from(this.customers.values()).pop();
+      if (lastCustomer?.customer_id) {
+        this.id = lastCustomer.customer_id;
+      }
+    }
     if(!Number(this.customerForm.value.age)){
       let snackBarRef = this._snackBar.open('Age must be number.', 'OK');
       return;
@@ -94,6 +101,7 @@ export class HeaderComponent {
     if(this.customerForm.value.name && this.customerForm.value.surename && this.customerForm.value.email && this.customerForm.value.phone_number &&
       this.customerForm.value.birth_number && this.customerForm.value.age){
       let customer: Customer = {
+        customer_id: this.id,
         name: this.customerForm.value.name,
         surename: this.customerForm.value.surename,
         email: this.customerForm.value.email,

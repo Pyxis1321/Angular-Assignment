@@ -1,4 +1,9 @@
 <div class="h-full w-4/5 mx-auto">
 	<app-header (saveContract)="saveContract($event)" (saveCustomer)="saveCustomer($event)" (saveEmployee)="saveEmployee($event)" [contracts]="passContracts" [customers]="passCustomers" [personel]="passPersonel"></app-header>
-	<app-contract-box [contracts]="passContracts" [customers]="passCustomers" [personel]="passPersonel"></app-contract-box>
+	<app-contract-box 
+	[contracts]="passContracts" [customers]="passCustomers" [personel]="passPersonel"
+	(deleteContract)="onDeleteContract($event)"
+	(deleteCustomer)="onDeleteCustomer($event)"
+	(deleteEmployee)="onDeleteEmployee($event)"
+	></app-contract-box>
 </div>

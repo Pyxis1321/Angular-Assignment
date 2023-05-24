@@ -21,6 +21,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DeleteConfirmationComponent } from './components/main-page/main-page/contract/deleteDialog/delete-confirmation/delete-confirmation.component';
 
 
 @NgModule({
@@ -30,6 +32,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     HeaderComponent,
     ContractBoxComponent,
     PersonDetailComponent,
+    DeleteConfirmationComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

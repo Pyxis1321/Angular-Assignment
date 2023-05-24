@@ -7,7 +7,9 @@ export interface Person{
 	age: number;
 }
 
-export interface Customer extends Person{}
+export interface Customer extends Person{
+	customer_id: number;
+}
 
 export interface Personel extends Person{
 	personel_id: number;
