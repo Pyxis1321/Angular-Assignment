@@ -10,6 +10,6 @@ export interface Person{
 export interface Customer extends Person{}
 
 export interface Personel extends Person{
-	pesonel_id: number;
+	personel_id: number;
 	personel_photo: string;
 }

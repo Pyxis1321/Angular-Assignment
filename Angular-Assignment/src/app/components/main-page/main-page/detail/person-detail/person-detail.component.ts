@@ -10,5 +10,5 @@ import { Customer, Personel } from 'src/app/models/customer.model';
 export class PersonDetailComponent {
   constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: {customer: Customer, personel: Personel}) { }
 
-  ngOnInit() {console.log(this.data.personel)}
+  ngOnInit() {}
 }

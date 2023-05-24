@@ -1,6 +1,219 @@
-<p>
-	<mat-toolbar class="rounded-b-3xl bg-orange-500">
-		<mat-icon>account_balance</mat-icon>
-	  	<span class="pl-5 text-2xl">Contracts</span>
-	</mat-toolbar>
-  </p>
+<mat-toolbar class="rounded-b-3xl bg-orange-500 justify-between">
+	<div>
+		<div class="flex justify-center items-center">
+			<mat-icon class="mx-auto text-center">account_balance</mat-icon>
+			<span class="pl-5 text-2xl">Contracts</span>
+		</div>
+	</div>
+
+</mat-toolbar>
+
+<div class="p-3">
+	<div>
+		<mat-expansion-panel class="border-2 border-orange-600">
+			<mat-expansion-panel-header>
+				<mat-panel-title>
+					Actions
+				</mat-panel-title>
+			</mat-expansion-panel-header>
+
+			<div class="grid grid-cols-1 gap-2">
+				<mat-expansion-panel hideToggle class="border-2 border-orange-600">
+					<mat-expansion-panel-header>
+						<div class="flex">
+							<mat-panel-title>
+								Create Contract
+							</mat-panel-title>
+							<mat-icon>control_point</mat-icon>
+						</div>
+					</mat-expansion-panel-header>
+
+					<form [formGroup]="contractForm">
+						<div>
+							<div class="grid grid-cols-3">
+								<div class="px-10 flex flex-col mx-auto">
+									Select a Bank
+									<mat-form-field>
+										<mat-label>Bank</mat-label>
+										<mat-select formControlName="institution" required>
+											<mat-option *ngFor="let bank of banks" [value]="bank">{{bank}}</mat-option>
+										</mat-select>
+									</mat-form-field>
+								</div>
+								<div *ngIf="contracts && customers && personel" class="px-10 flex flex-col mx-auto">
+									Select a
+									Customer
+									<mat-form-field>
+										<mat-label>Customer</mat-label>
+										<mat-select formControlName="customer" required>
+											<mat-option *ngFor="let customer of customers"
+												[value]="customer">{{customer.name +
+												' ' + customer.surename}}</mat-option>
+										</mat-select>
+									</mat-form-field>
+								</div>
+								<div *ngIf="contracts && customers && personel" class="px-10 flex flex-col mx-auto">
+									Select
+									Employees
+									<mat-form-field>
+										<mat-label>Employee</mat-label>
+										<mat-select formControlName="employees" multiple required>
+											<mat-option *ngFor="let employee of personel"
+												[value]="employee">{{employee.surename
+												+ ' ' + employee.surename}}</mat-option>
+										</mat-select>
+									</mat-form-field>
+								</div>
+							</div>
+							<div class="grid grid-cols-3 gap-4 pt-5">
+								<mat-form-field>
+									<mat-label>Day of Creation</mat-label>
+									<input matInput [matDatepicker]="picker" formControlName="date_of_creation"
+										required>
+									<mat-hint>MM/DD/YYYY</mat-hint>
+									<mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+									<mat-datepicker #picker></mat-datepicker>
+								</mat-form-field>
+
+								<mat-form-field>
+									<mat-label>Day of Validation</mat-label>
+									<input matInput [matDatepicker]="picker1" formControlName="validity_date" required>
+									<mat-hint>MM/DD/YYYY</mat-hint>
+									<mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+									<mat-datepicker #picker1></mat-datepicker>
+								</mat-form-field>
+
+								<mat-form-field>
+									<mat-label>Day of Expiration</mat-label>
+									<input matInput [matDatepicker]="picker2" formControlName="date_of_closure"
+										required>
+									<mat-hint>MM/DD/YYYY</mat-hint>
+									<mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+									<mat-datepicker #picker2></mat-datepicker>
+								</mat-form-field>
+							</div>
+							<div class="pt-5 flex flex-col float-right">
+								<button *ngIf='contractForm.valid' (click)="onSaveContract()"
+									class="mx-auto border-2 border-orange-600 rounded-full py-2 px-5 text-xl">Save</button>
+							</div>
+						</div>
+					</form>
+				</mat-expansion-panel>
+
+				<mat-expansion-panel hideToggle class="border-2 border-orange-600">
+					<mat-expansion-panel-header>
+						<div class="flex">
+							<mat-panel-title>
+								Create Customer
+							</mat-panel-title>
+							<mat-icon>control_point</mat-icon>
+						</div>
+					</mat-expansion-panel-header>
+					<form [formGroup]="customerForm">
+						<div>
+							<div class="grid grid-cols-3 gap-2">
+								<div class="px-10 flex flex-col mx-auto">
+									<mat-form-field class="example-full-width">
+										<mat-label>Name</mat-label>
+										<input matInput formControlName="name" required>
+									</mat-form-field>
+								</div>
+								<div class="px-10 flex flex-col mx-auto">
+									<mat-form-field class="example-full-width">
+										<mat-label>Surename</mat-label>
+										<input matInput formControlName="surename" required>
+									</mat-form-field>
+								</div>
+								<div class="px-10 flex flex-col mx-auto">
+									<mat-form-field class="example-full-width">
+										<mat-label>Email</mat-label>
+										<input matInput formControlName="email" required>
+									  </mat-form-field>
+								</div>
+								<div class="px-10 flex flex-col mx-auto">
+									<mat-form-field class="example-full-width">
+										<mat-label>Phone Number</mat-label>
+										<input matInput formControlName="phone_number" required>
+									  </mat-form-field>
+								</div>
+								<div class="px-10 flex flex-col mx-auto">
+									<mat-form-field class="example-full-width">
+										<mat-label>Birth Number</mat-label>
+										<input matInput formControlName="birth_number" required>
+									  </mat-form-field>
+								</div>
+								<div class="px-10 flex flex-col mx-auto">
+									<mat-form-field class="example-full-width">
+										<mat-label>Age</mat-label>
+										<input matInput formControlName="age" required>
+									  </mat-form-field>
+								</div>
+							</div>
+						</div>
+						<div class="pt-5 flex flex-col float-right">
+							<button *ngIf='customerForm.valid' (click)="onSaveCustomer()"
+								class="mx-auto border-2 border-orange-600 rounded-full py-2 px-5 text-xl">Save</button>
+						</div>
+					</form>
+				</mat-expansion-panel>
+
+				<mat-expansion-panel hideToggle class="border-2 border-orange-600">
+					<mat-expansion-panel-header>
+						<div class="flex">
+							<mat-panel-title>
+								Create a Employee
+							</mat-panel-title>
+							<mat-icon>control_point</mat-icon>
+						</div>
+					</mat-expansion-panel-header>
+					<form [formGroup]="employeeForm">
+						<div>
+							<div class="grid grid-cols-3 gap-2">
+								<div class="px-10 flex flex-col mx-auto">
+									<mat-form-field class="example-full-width">
+										<mat-label>Name</mat-label>
+										<input matInput formControlName="name" required>
+									</mat-form-field>
+								</div>
+								<div class="px-10 flex flex-col mx-auto">
+									<mat-form-field class="example-full-width">
+										<mat-label>Surename</mat-label>
+										<input matInput formControlName="surename" required>
+									</mat-form-field>
+								</div>
+								<div class="px-10 flex flex-col mx-auto">
+									<mat-form-field class="example-full-width">
+										<mat-label>Email</mat-label>
+										<input matInput formControlName="email" required>
+									  </mat-form-field>
+								</div>
+								<div class="px-10 flex flex-col mx-auto">
+									<mat-form-field class="example-full-width">
+										<mat-label>Phone Number</mat-label>
+										<input matInput formControlName="phone_number" required>
+									  </mat-form-field>
+								</div>
+								<div class="px-10 flex flex-col mx-auto">
+									<mat-form-field class="example-full-width">
+										<mat-label>Birth Number</mat-label>
+										<input matInput formControlName="birth_number" required>
+									  </mat-form-field>
+								</div>
+								<div class="px-10 flex flex-col mx-auto">
+									<mat-form-field class="example-full-width">
+										<mat-label>Age</mat-label>
+										<input matInput formControlName="age" required>
+									  </mat-form-field>
+								</div>
+							</div>
+						</div>
+						<div class="pt-5 flex flex-col float-right">
+							<button *ngIf='employeeForm.valid' (click)="onSaveEmployee()"
+								class="mx-auto border-2 border-orange-600 rounded-full py-2 px-5 text-xl">Save</button>
+						</div>
+					</form>
+				</mat-expansion-panel>
+			</div>
+		</mat-expansion-panel>
+	</div>
+</div>

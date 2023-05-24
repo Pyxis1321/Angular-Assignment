@@ -15,6 +15,13 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
 import { PersonDetailComponent } from './components/main-page/main-page/detail/person-detail/person-detail.component';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+import {MatSelectModule} from '@angular/material/select';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +40,14 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
     MatTabsModule,
     MatExpansionModule,
     MatIconModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
