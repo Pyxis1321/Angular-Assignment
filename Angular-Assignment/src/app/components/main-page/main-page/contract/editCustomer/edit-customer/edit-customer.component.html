@@ -1,0 +1,48 @@
+<div class="p-10">
+	<form [formGroup]="customerForm">
+		<div class="mx-auto">
+			<div class="grid grid-cols-3 gap-2">
+				<div class="px-10 flex flex-col mx-auto">
+					<mat-form-field class="example-full-width">
+						<mat-label>Name</mat-label>
+						<input matInput formControlName="name">
+					</mat-form-field>
+				</div>
+				<div class="px-10 flex flex-col mx-auto">
+					<mat-form-field class="example-full-width">
+						<mat-label>Surename</mat-label>
+						<input matInput formControlName="surename">
+					</mat-form-field>
+				</div>
+				<div class="px-10 flex flex-col mx-auto">
+					<mat-form-field class="example-full-width">
+						<mat-label>Email</mat-label>
+						<input matInput formControlName="email">
+					</mat-form-field>
+				</div>
+				<div class="px-10 flex flex-col mx-auto">
+					<mat-form-field class="example-full-width">
+						<mat-label>Phone Number</mat-label>
+						<input matInput formControlName="phone_number">
+					</mat-form-field>
+				</div>
+				<div class="px-10 flex flex-col mx-auto">
+					<mat-form-field class="example-full-width">
+						<mat-label>Birth Number</mat-label>
+						<input matInput formControlName="birth_number">
+					</mat-form-field>
+				</div>
+				<div class="px-10 flex flex-col mx-auto">
+					<mat-form-field class="example-full-width">
+						<mat-label>Age</mat-label>
+						<input matInput formControlName="age">
+					</mat-form-field>
+				</div>
+			</div>
+		</div>
+		<div class="p-2 flex flex-col float-right">
+			<button (click)="onSave()"
+				class="mx-auto border-2 border-orange-600 rounded-full py-2 px-5 text-xl">Save</button>
+		</div>
+	</form>
+</div>

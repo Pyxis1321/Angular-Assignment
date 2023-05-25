@@ -1,0 +1,63 @@
+<div class="p-10">
+	<form [formGroup]="contractForm">
+		<div>
+			<div class="grid grid-cols-3 mx-auto justify-center justify-self-center justify-items-center">
+					<div *ngIf="data.contract.institution" class="px-10 flex flex-col">
+						<mat-form-field>
+							<mat-label>Institution</mat-label>
+							<mat-select formControlName="institution" [(value)]="data.contract.institution">
+								<mat-option [value]="bank" *ngFor="let bank of banks">{{bank}}</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+					<div *ngIf="data.customers" class="px-10 flex flex-col">
+						<mat-form-field>
+							<mat-label>Customer</mat-label>
+							<mat-select formControlName="customer">
+								<mat-option *ngFor="let customer of data.customers" [value]="customer">{{customer.name +
+									' ' + customer.surename}}</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+					<div *ngIf="data.personel" class="px-10 flex flex-col">
+						<mat-form-field>
+							<mat-label>Employee</mat-label>
+							<mat-select formControlName="employees" multiple>
+								<mat-option *ngFor="let employee of data.personel" [value]="employee">{{employee.name
+									+ ' ' + employee.surename}}</mat-option>
+							</mat-select>
+						</mat-form-field>
+				</div>
+			</div>
+			<div class="grid grid-cols-3 gap-4 pt-5">
+				<mat-form-field>
+					<mat-label>Day of Creation</mat-label>
+					<input matInput [matDatepicker]="picker" formControlName="date_of_creation">
+					<mat-hint>MM/DD/YYYY</mat-hint>
+					<mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+					<mat-datepicker #picker></mat-datepicker>
+				</mat-form-field>
+
+				<mat-form-field>
+					<mat-label>Day of Validation</mat-label>
+					<input matInput [matDatepicker]="picker1" formControlName="validity_date">
+					<mat-hint>MM/DD/YYYY</mat-hint>
+					<mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+					<mat-datepicker #picker1></mat-datepicker>
+				</mat-form-field>
+
+				<mat-form-field>
+					<mat-label>Day of Expiration</mat-label>
+					<input matInput [matDatepicker]="picker2" formControlName="date_of_closure">
+					<mat-hint>MM/DD/YYYY</mat-hint>
+					<mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+					<mat-datepicker #picker2></mat-datepicker>
+				</mat-form-field>
+			</div>
+			<div class="p-2 flex flex-col float-right">
+				<button (click)="onSave()"
+					class="mx-auto border-2 border-orange-600 rounded-full py-2 px-5 text-xl">Save</button>
+			</div>
+		</div>
+	</form>
+</div>

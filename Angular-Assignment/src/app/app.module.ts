@@ -23,6 +23,9 @@ import { MatInputModule } from '@angular/material/input';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DeleteConfirmationComponent } from './components/main-page/main-page/contract/deleteDialog/delete-confirmation/delete-confirmation.component';
+import { EditContractComponent } from './components/main-page/main-page/contract/editContract/edit-contract/edit-contract.component';
+import { EditCustomerComponent } from './components/main-page/main-page/contract/editCustomer/edit-customer/edit-customer.component';
+import { EditPersonelComponent } from './components/main-page/main-page/contract/editPersonel/edit-personel/edit-personel.component';
 
 
 @NgModule({
@@ -33,6 +36,9 @@ import { DeleteConfirmationComponent } from './components/main-page/main-page/co
     ContractBoxComponent,
     PersonDetailComponent,
     DeleteConfirmationComponent,
+    EditContractComponent,
+    EditCustomerComponent,
+    EditPersonelComponent,
   ],
   imports: [
     BrowserModule,

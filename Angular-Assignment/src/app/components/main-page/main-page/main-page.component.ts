@@ -39,6 +39,29 @@ export class MainPageComponent {
     let index = this.passPersonel.findIndex(x => x.personel_id === deleteEmployee.personel_id)
     this.passPersonel.splice(index,1)
   }
+
+  onEditContract(editedContract: Contract){
+    for(let contract of this.passContracts){
+      if(contract.registration_number === editedContract.registration_number)
+      Object.assign(contract, editedContract)
+    }
+  }
+
+  onEditCustomer(editedCustomer: Customer){
+    for(let customer of this.passCustomers){
+      if(customer.customer_id === editedCustomer.customer_id){
+        Object.assign(customer, editedCustomer)
+      }
+    }
+  }
+
+  onEditEmployee(editedEmployee: Personel){
+    for(let employee of this.passPersonel){
+      if(employee.personel_id === editedEmployee.personel_id){
+        Object.assign(employee, editedEmployee)
+      }
+    }
+  }
 }
 
 /*
@@ -98,12 +121,12 @@ let personel2: Personel = {
   
 let contract1: Contract = {
   registration_number: 1,
-  institution: 'CSOB',
+  institution: 'ČSOB',
   client: customer1,
   contract_administrator: [personel1],
-  date_of_creation: new Date(2021, 8, 1),
-  validity_date: new Date(2021, 9, 1),
-  date_of_closure: new Date(2022, 9, 1)
+  date_of_creation: new Date("2021-1-16"),
+  validity_date: new Date('2021-9-1'),
+  date_of_closure: new Date('2022-9-1')
 }
 
 let contract2: Contract = {
@@ -111,36 +134,36 @@ let contract2: Contract = {
   institution: 'VUB',
   client: customer1,
   contract_administrator: [personel1, personel2],
-  date_of_creation: new Date(2020, 8, 1),
-  validity_date: new Date(2022, 9, 1),
-  date_of_closure: new Date(2023, 9, 1)
+  date_of_creation: new Date('2020-8-1'),
+  validity_date: new Date('2021-9-1'),
+  date_of_closure: new Date('2023-11-12')
 }
 let contract3: Contract = {
   registration_number: 3,
   institution: 'AEGON',
   client: customer2,
   contract_administrator: [personel2],
-  date_of_creation: new Date(2019, 8, 1),
-  validity_date: new Date(2019, 9, 1),
-  date_of_closure: new Date(2022, 9, 1)
+  date_of_creation: new Date('2020-8-1'),
+  validity_date: new Date('2021-9-1'),
+  date_of_closure: new Date('2023-11-12')
 }
 let contract4: Contract = {
   registration_number: 4,
-  institution: 'CSOB',
+  institution: 'ČSOB',
   client: customer3,
   contract_administrator: [personel1],
-  date_of_creation: new Date(2021, 8, 1),
-  validity_date: new Date(2021, 9, 1),
-  date_of_closure: new Date(2022, 9, 1)
+  date_of_creation: new Date('2020-8-1'),
+  validity_date: new Date('2021-9-1'),
+  date_of_closure: new Date('2023-11-12')
 }
 let contract5: Contract = {
   registration_number: 5,
   institution: 'Axa',
   client: customer3,
   contract_administrator: [personel1],
-  date_of_creation: new Date(2021, 8, 1),
-  validity_date: new Date(2021, 9, 1),
-  date_of_closure: new Date(2022, 9, 1)
+  date_of_creation: new Date('2020-8-1'),
+  validity_date: new Date('2021-9-1'),
+  date_of_closure: new Date('2023-11-12')
 }
 
 /*

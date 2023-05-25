@@ -6,6 +6,9 @@ import { PersonDetailComponent } from '../../detail/person-detail/person-detail.
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteConfirmationComponent } from '../deleteDialog/delete-confirmation/delete-confirmation.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { EditContractComponent } from '../editContract/edit-contract/edit-contract.component';
+import { EditCustomerComponent } from '../editCustomer/edit-customer/edit-customer.component';
+import { EditPersonelComponent } from '../editPersonel/edit-personel/edit-personel.component';
 
 @Component({
   selector: 'app-contract-box',
@@ -16,13 +19,21 @@ export class ContractBoxComponent {
   @Input() contracts?: Array<Contract>;
   @Input() customers?: Array<Customer>;
   @Input() personel?: Array<Personel>;
+  
   @Output() deleteContract = new EventEmitter<Contract>();
   @Output() deleteCustomer = new EventEmitter<Customer>();
   @Output() deleteEmployee = new EventEmitter<Personel>();
 
-  shouldDelete: boolean = false;
+  @Output() editContract = new EventEmitter<Contract>();
+  @Output() editCustomer = new EventEmitter<Customer>();
+  @Output() editEmployee = new EventEmitter<Personel>();
 
-  constructor(private matBottomSheet: MatBottomSheet, public dialog: MatDialog, private _snackBar: MatSnackBar){}
+  shouldDelete: boolean = false;
+  shouldEdit: boolean = true;
+
+
+  constructor(private matBottomSheet: MatBottomSheet, public dialog: MatDialog, private _snackBar: MatSnackBar){
+  }
 
   openBottomSheetCustomer(selecterCustomer: Customer){
     this.matBottomSheet.open(PersonDetailComponent, {
@@ -82,6 +93,59 @@ export class ContractBoxComponent {
         this.deleteEmployee.emit(employee)
         this._snackBar.open('Employee Deleted', 'OK')
       }
+    });
+  }
+
+  onEditContract(contract: Contract){
+    const confirmation = this.dialog.open(EditContractComponent, {
+      width: '850px',
+      data: {
+        contract: contract,
+        customers: this.customers,
+        personel: this.personel
+      }
+    })
+    
+    confirmation.afterClosed().subscribe(result => {
+      if(!result){
+        return;
+      }
+      let editedContract: Contract = result
+      this.editContract.emit(editedContract)
+    });
+  }
+
+  onEditCustomer(customer: Customer){
+    const confirmation = this.dialog.open(EditCustomerComponent, {
+      width: '1000px',
+      data: {
+        customer: customer,
+      }
+    })
+
+    confirmation.afterClosed().subscribe(result => {
+      if(!result){
+        return
+      }
+      let editedCustomer: Customer = result
+      this.editCustomer.emit(editedCustomer)
+    });
+  }
+
+  onEditEmployee(employee: Personel){
+    const confirmation = this.dialog.open(EditPersonelComponent, {
+      width: '1000px',
+      data: {
+        employee: employee,
+      }
+    })
+
+    confirmation.afterClosed().subscribe(result => {
+      if(!result){
+        return
+      }
+      let editedEmployee: Personel = result
+      this.editEmployee.emit(editedEmployee)
     });
   }
 }
