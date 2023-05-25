@@ -10,8 +10,9 @@
 
 <div class="p-3">
 	<div>
-		<mat-expansion-panel class="border-2 border-orange-600">
+		<mat-expansion-panel hideToggle class="border-2 border-orange-600">
 			<mat-expansion-panel-header>
+				<mat-icon>expand_more</mat-icon>
 				<mat-panel-title>
 					Actions
 				</mat-panel-title>
@@ -30,9 +31,8 @@
 
 					<form [formGroup]="contractForm">
 						<div>
-							<div class="grid grid-cols-3">
-								<div class="px-10 flex flex-col mx-auto">
-									Select a Bank
+							<div class="grid grid-cols-3 mx-auto justify-center justify-self-center justify-items-center">
+								<div class="px-10 flex flex-col">
 									<mat-form-field>
 										<mat-label>Bank</mat-label>
 										<mat-select formControlName="institution" required>
@@ -40,9 +40,7 @@
 										</mat-select>
 									</mat-form-field>
 								</div>
-								<div *ngIf="contracts && customers && personel" class="px-10 flex flex-col mx-auto">
-									Select a
-									Customer
+								<div *ngIf="contracts && customers && personel" class="px-10 flex flex-col">
 									<mat-form-field>
 										<mat-label>Customer</mat-label>
 										<mat-select formControlName="customer" required>
@@ -52,9 +50,7 @@
 										</mat-select>
 									</mat-form-field>
 								</div>
-								<div *ngIf="contracts && customers && personel" class="px-10 flex flex-col mx-auto">
-									Select
-									Employees
+								<div *ngIf="contracts && customers && personel" class="px-10 flex flex-col">
 									<mat-form-field>
 										<mat-label>Employee</mat-label>
 										<mat-select formControlName="employees" multiple required>
@@ -92,7 +88,7 @@
 									<mat-datepicker #picker2></mat-datepicker>
 								</mat-form-field>
 							</div>
-							<div class="pt-5 flex flex-col float-right">
+							<div class="pt-1 flex flex-col float-right">
 								<button *ngIf='contractForm.valid' (click)="onSaveContract()"
 									class="mx-auto border-2 border-orange-600 rounded-full py-2 px-5 text-xl">Save</button>
 							</div>
@@ -150,7 +146,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="pt-5 flex flex-col float-right">
+						<div class="pt-1 flex flex-col float-right">
 							<button *ngIf='customerForm.valid' (click)="onSaveCustomer()"
 								class="mx-auto border-2 border-orange-600 rounded-full py-2 px-5 text-xl">Save</button>
 						</div>
@@ -207,7 +203,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="pt-5 flex flex-col float-right">
+						<div class="pt-1 flex flex-col float-right">
 							<button *ngIf='employeeForm.valid' (click)="onSaveEmployee()"
 								class="mx-auto border-2 border-orange-600 rounded-full py-2 px-5 text-xl">Save</button>
 						</div>

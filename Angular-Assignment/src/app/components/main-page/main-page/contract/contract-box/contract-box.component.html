@@ -17,37 +17,41 @@
 						<div class="grid flex-cols-1">
 							<div class="text-center p-2">Registration Number: <span
 									class="font-bold">{{contract.registration_number}}</span></div>
-							<hr class="w-10/12 h-px mx-auto bg-gray-200 border-0 dark:bg-gray-700">
 
 							<div class="text-center p-2">Bank: <span class="font-bold">{{contract.institution}}</span>
 							</div>
-							<hr class="w-10/12 h-px mx-auto bg-gray-200 border-0 dark:bg-gray-700">
 
 							<button (click)="openBottomSheetCustomer(contract.client)"
-								class="text-center p-2 hover:bg-gray-200">Client: <span
-									class="font-bold">{{contract.client.name + ' ' +
-									contract.client.surename}}</span></button>
-							<hr class="w-10/12 h-px mx-auto bg-gray-200 border-0 dark:bg-gray-700">
+								class="text-center px-2 hover:bg-gray-200 inline-flex items-center truncate mx-auto">Client: 
+								<span class="font-bold"> {{contract.client.name + ' ' +
+									contract.client.surename}}</span>
+								<div class="mt-2 px-1">
+									<mat-icon class="">info</mat-icon>
+								</div>
+							</button>
 
 							<div *ngFor="let personel of contract.contract_administrator; let i=index">
 								<button (click)="openBottomSheetPersonel(contract.contract_administrator[i])"
-									class="text-center p-2 hover:bg-gray-200">Contract leader {{i + 1}}: <span
-										class="font-bold">{{personel.name + ' ' +
-										personel.surename}}</span></button>
-								<hr class="w-10/12 h-px mx-auto bg-gray-200 border-0 dark:bg-gray-700">
+									class="text-center px-2 hover:bg-gray-200 inline-flex items-center truncate">Contract
+									leader {{i + 1}}: <span class="font-bold">{{personel.name + ' ' +
+										personel.surename}}</span>
+
+									<div class="mt-2 px-1">
+										<mat-icon class="">info</mat-icon>
+									</div>
+								</button>
 							</div>
 
 							<div class="text-center p-2">Date of creation: <span
-									class="font-bold">{{contract.date_of_creation.getDate() + '-' + (contract.date_of_creation.getMonth() + 1)
-								+ '-' + contract.date_of_creation.getFullYear()}}</span>
+									class="font-bold">{{contract.date_of_creation.getDate() + '-' +
+									(contract.date_of_creation.getMonth() + 1)
+									+ '-' + contract.date_of_creation.getFullYear()}}</span>
 							</div>
-							<hr class="w-10/12 h-px mx-auto bg-gray-200 border-0 dark:bg-gray-700">
 
 							<div class="text-center p-2">Date of validation: <span
 									class="font-bold">{{contract.validity_date.getDate() + '-' +
 									(contract.validity_date.getMonth() + 1)
 									+ '-' + contract.validity_date.getFullYear()}}</span></div>
-							<hr class="w-10/12 h-px mx-auto bg-gray-200 border-0 dark:bg-gray-700">
 
 							<div class="text-center p-2">Date of closure: <span
 									class="font-bold">{{contract.date_of_closure.getDate() + '-' +
@@ -94,9 +98,10 @@
 									}}</span></div>
 							<div class="text-lg p-1">Age: <span class="font-bold">{{ customer.age }}</span></div>
 							<div class="grid grid-cols-2 gap-4 pt-5">
-								<button (click)="onEditCustomer(customer)" class="border-2 border-orange-600 p-2 rounded-full hover:bg-gray-200">Edit</button>
+								<button (click)="onEditCustomer(customer)"
+									class="border-2 border-orange-600 p-2 rounded-full hover:bg-gray-200"><mat-icon>edit</mat-icon></button>
 								<button (click)="onDeleteCustomer(customer)"
-									class="border-2 border-orange-600 p-2 rounded-full hover:bg-gray-200">Delete</button>
+									class="border-2 border-orange-600 p-2 rounded-full hover:bg-gray-200"><mat-icon>delete</mat-icon></button>
 							</div>
 						</div>
 					</mat-expansion-panel>
@@ -123,7 +128,7 @@
 									}}</span>
 							</div>
 							<div class="text-lg p-1">Full name: <span class="font-bold">{{ employee.name + ' ' +
-								employee.surename }}</span></div>
+									employee.surename }}</span></div>
 							<div class="text-lg p-1">Email: <span class="font-bold">{{ employee.email }}</span></div>
 							<div class="text-lg p-1">Phone number: <span class="font-bold">{{ employee.phone_number
 									}}</span>
@@ -133,9 +138,10 @@
 							</div>
 							<div class="text-lg p-1">Age: <span class="font-bold">{{ employee.age }}</span></div>
 							<div class="grid grid-cols-2 gap-4 pt-5">
-								<button (click)="onEditEmployee(employee)" class="border-2 border-orange-600 p-2 rounded-full hover:bg-gray-200">Edit</button>
+								<button (click)="onEditEmployee(employee)"
+									class="border-2 border-orange-600 p-2 rounded-full hover:bg-gray-200"><mat-icon>edit</mat-icon></button>
 								<button (click)="onDeleteEmployee(employee)"
-									class="border-2 border-orange-600 p-2 rounded-full hover:bg-gray-200">Delete</button>
+									class="border-2 border-orange-600 p-2 rounded-full hover:bg-gray-200"><mat-icon>delete</mat-icon></button>
 							</div>
 						</div>
 					</mat-expansion-panel>
