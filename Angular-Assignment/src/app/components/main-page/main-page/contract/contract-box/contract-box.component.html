@@ -1,7 +1,33 @@
 <mat-tab-group>
 	<mat-tab label="Contracts">
 		<div *ngIf="contracts">
-			<div class="grid xl:grid-cols-5 lg:grid-cols-3 md:grid-cols-2 gap-4 sm:grid-cols-1 pt-5">
+			<div class="pt-5 flex gap-4 flex-col lg:flex-row">
+				<div>
+					<mat-form-field class="example-full-width">
+						<mat-label>
+							<div class="flex">
+								<div class="pr-1">Seach by customer</div>
+								<mat-icon class=>search</mat-icon>
+							</div>
+						</mat-label>
+						<input matInput type="text" [(ngModel)]="contractSearchCustomer"
+							(input)="onContractSearchCustomer()">
+					</mat-form-field>
+				</div>
+				<div>
+					<mat-form-field class="example-full-width">
+						<mat-label>
+							<div class="flex">
+								<div class="pr-1">Seach by employee</div>
+								<mat-icon class=>search</mat-icon>
+							</div>
+						</mat-label>
+						<input matInput type="text" [(ngModel)]="contractSearchEmployee"
+							(input)="onContractSearchEmployee()">
+					</mat-form-field>
+				</div>
+			</div>
+			<div class="grid xl:grid-cols-5 lg:grid-cols-3 md:grid-cols-2 gap-4 sm:grid-cols-1">
 				<button [matMenuTriggerFor]="info_pannel" *ngFor="let contract of contracts"
 					class="p-4 border-2 hover:bg-gray-300 border-orange-600 rounded-3xl w-full grid flex-cols-1 justify-center items-center">
 					<div class="text-center">Registration Number: <span
@@ -22,7 +48,7 @@
 							</div>
 
 							<button (click)="openBottomSheetCustomer(contract.client)"
-								class="text-center px-2 hover:bg-gray-200 inline-flex items-center truncate mx-auto">Client: 
+								class="text-center px-2 hover:bg-gray-200 inline-flex items-center truncate mx-auto">Client:
 								<span class="font-bold"> {{contract.client.name + ' ' +
 									contract.client.surename}}</span>
 								<div class="mt-2 px-1">
@@ -59,7 +85,7 @@
 									+ '-' + contract.date_of_closure.getFullYear()}}</span></div>
 						</div>
 
-						<div class=" p-2 grid grid-cols-2 gap-2 mx-auto">
+						<div class=" p-2 grid grid-cols-3 gap-2 mx-auto">
 							<button (click)="onEditContract(contract)"
 								class="border-2 border-orange-600 rounded-full pt-2 px-2 hover:bg-gray-200">
 								<mat-icon>edit</mat-icon>
@@ -67,6 +93,10 @@
 							<button (click)="onDeleteContract(contract)"
 								class="border-2 border-orange-600 rounded-full pt-2 px-2 hover:bg-gray-200">
 								<mat-icon>delete</mat-icon>
+							</button>
+							<button (click)="onDownloadContractCSV(contract)"
+								class="border-2 border-orange-600 rounded-full pt-2 px-2 hover:bg-gray-200">
+								<mat-icon>arrow_downward</mat-icon>
 							</button>
 						</div>
 					</mat-menu>
@@ -76,6 +106,16 @@
 	</mat-tab>
 	<mat-tab label="Customers">
 		<div *ngIf="customers" class="pt-4">
+			<mat-form-field class="example-full-width">
+				<mat-label class="text-center">
+					<div class="flex">
+						<div class="pr-1">Search</div>
+						<mat-icon class=>search</mat-icon>
+					</div>
+				</mat-label>
+				<input matInput type="text" [(ngModel)]="searchCustomerString" (input)="onSearchCustomer()">
+			</mat-form-field>
+
 			<div *ngFor="let customer of customers" class="p-2">
 				<mat-accordion>
 					<mat-expansion-panel hideToggle class="border-2 border-orange-600">
@@ -97,11 +137,16 @@
 							<div class="text-lg p-1">Birth number: <span class="font-bold">{{ customer.birth_number
 									}}</span></div>
 							<div class="text-lg p-1">Age: <span class="font-bold">{{ customer.age }}</span></div>
-							<div class="grid grid-cols-2 gap-4 pt-5">
+
+							<div class="grid grid-cols-3 gap-4 pt-5">
 								<button (click)="onEditCustomer(customer)"
 									class="border-2 border-orange-600 p-2 rounded-full hover:bg-gray-200"><mat-icon>edit</mat-icon></button>
 								<button (click)="onDeleteCustomer(customer)"
 									class="border-2 border-orange-600 p-2 rounded-full hover:bg-gray-200"><mat-icon>delete</mat-icon></button>
+								<button (click)="onDownloadCustomerCSV(customer)"
+									class="border-2 border-orange-600 rounded-full pt-2 px-2 hover:bg-gray-200">
+									<mat-icon>arrow_downward</mat-icon>
+								</button>
 							</div>
 						</div>
 					</mat-expansion-panel>
@@ -111,6 +156,15 @@
 	</mat-tab>
 	<mat-tab label="Personel">
 		<div *ngIf="personel" class="pt-4">
+			<mat-form-field class="example-full-width">
+				<mat-label class="text-center">
+					<div class="flex">
+						<div class="pr-1">Search</div>
+						<mat-icon class=>search</mat-icon>
+					</div>
+				</mat-label>
+				<input matInput type="text" [(ngModel)]="searchEmployeeString" (input)="onSearchEmployee()">
+			</mat-form-field>
 			<div *ngFor="let employee of personel" class="p-2">
 				<mat-accordion>
 					<mat-expansion-panel hideToggle class="border-2 border-orange-600">
@@ -137,11 +191,15 @@
 									}}</span>
 							</div>
 							<div class="text-lg p-1">Age: <span class="font-bold">{{ employee.age }}</span></div>
-							<div class="grid grid-cols-2 gap-4 pt-5">
+							<div class="grid grid-cols-3 gap-4 pt-5">
 								<button (click)="onEditEmployee(employee)"
 									class="border-2 border-orange-600 p-2 rounded-full hover:bg-gray-200"><mat-icon>edit</mat-icon></button>
 								<button (click)="onDeleteEmployee(employee)"
 									class="border-2 border-orange-600 p-2 rounded-full hover:bg-gray-200"><mat-icon>delete</mat-icon></button>
+								<button (click)="onDownloadEmployeeCSV(employee)"
+									class="border-2 border-orange-600 rounded-full pt-2 px-2 hover:bg-gray-200">
+									<mat-icon>arrow_downward</mat-icon>
+								</button>
 							</div>
 						</div>
 					</mat-expansion-panel>

@@ -9,7 +9,7 @@ import { Customer, Personel } from 'src/app/models/customer.model';
   styleUrls: ['./main-page.component.css']
 })
 export class MainPageComponent {
-  passContracts: Array<Contract> = contracts
+  passContracts: Array<Contract> = contracts;
   passCustomers: Array<Customer> = customers;
   passPersonel: Array<Personel> = personel;
 
@@ -61,6 +61,72 @@ export class MainPageComponent {
         Object.assign(employee, editedEmployee)
       }
     }
+  }
+
+  onSearchByCustomer(customer: string){
+    customer = customer.toLowerCase()
+    if(customer === ''){
+      this.passContracts = contracts;
+    }
+    
+    if(customer.length > 0){
+      let newContracts: Array<Contract> = [];
+      for(let contract of this.passContracts){
+        if(contract.client.name.toLowerCase().includes(customer) || contract.client.surename.toLowerCase().includes(customer)){
+          newContracts.push(contract)
+        }
+      }
+      this.passContracts = newContracts
+    }
+  }
+
+  onSearchContractEmployee(employeeString: string){
+    employeeString = employeeString.toLowerCase()
+    if(employeeString === ''){
+      this.passContracts = contracts;
+    }
+    
+    if(employeeString.length > 0){
+      let newContracts: Array<Contract> = [];
+      for(let contract of this.passContracts){
+        for(let person of contract.contract_administrator){
+          if(person.name.toLowerCase().includes(employeeString) || person.surename.toLowerCase().includes(employeeString)){
+            newContracts.push(contract)
+          }
+        }
+      }
+      this.passContracts = newContracts
+    }
+  }
+
+  onSearchCustomer(searchCustomer: string){
+    searchCustomer = searchCustomer.toLowerCase()
+    if(searchCustomer === ''){
+      this.passCustomers = customers;
+    }
+
+    let newCustomers: Array<Customer> = [];
+    for(let customer of this.passCustomers){
+      if(customer.name.toLowerCase().includes(searchCustomer) || customer.surename.toLowerCase().includes(searchCustomer)){
+        newCustomers.push(customer)
+      }
+    }
+    this.passCustomers = newCustomers
+  }
+
+  onSearchEmployee(searchEmployee: string){
+    searchEmployee = searchEmployee.toLowerCase()
+    if(searchEmployee === ''){
+      this.passPersonel = personel;
+    }
+
+    let newEmployees: Array<Personel> = [];
+    for(let employee of this.passPersonel){
+      if(employee.name.toLowerCase().includes(searchEmployee) || employee.surename.toLowerCase().includes(searchEmployee)){
+        newEmployees.push(employee)
+      }
+    }
+    this.passPersonel = newEmployees
   }
 }
 

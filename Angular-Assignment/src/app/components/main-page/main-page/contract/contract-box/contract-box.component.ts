@@ -9,6 +9,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { EditContractComponent } from '../editContract/edit-contract/edit-contract.component';
 import { EditCustomerComponent } from '../editCustomer/edit-customer/edit-customer.component';
 import { EditPersonelComponent } from '../editPersonel/edit-personel/edit-personel.component';
+import { FormBuilder, FormControl } from '@angular/forms';
+import { ngxCsv } from 'ngx-csv/ngx-csv';
 
 @Component({
   selector: 'app-contract-box',
@@ -28,11 +30,22 @@ export class ContractBoxComponent {
   @Output() editCustomer = new EventEmitter<Customer>();
   @Output() editEmployee = new EventEmitter<Personel>();
 
+  @Output() searchContractCustomer = new EventEmitter<string>();
+  @Output() searchContractEmployee = new EventEmitter<string>();
+  @Output() searchCustomer = new EventEmitter<string>();
+  @Output() searchEmployee = new EventEmitter<string>();
+
   shouldDelete: boolean = false;
   shouldEdit: boolean = true;
 
 
-  constructor(private matBottomSheet: MatBottomSheet, public dialog: MatDialog, private _snackBar: MatSnackBar){
+  contractSearchCustomer: string = '';
+  contractSearchEmployee: string = '';
+  searchCustomerString: string = '';
+  searchEmployeeString: string = '';
+
+  
+  constructor(private matBottomSheet: MatBottomSheet, public dialog: MatDialog, private _snackBar: MatSnackBar, private fm: FormBuilder){
   }
 
   openBottomSheetCustomer(selecterCustomer: Customer){
@@ -148,4 +161,93 @@ export class ContractBoxComponent {
       this.editEmployee.emit(editedEmployee)
     });
   }
+
+  onContractSearchCustomer(){
+    this.searchContractCustomer.emit(this.contractSearchCustomer)
+  }
+
+  onContractSearchEmployee(){
+    this.searchContractEmployee.emit(this.contractSearchEmployee)
+  }
+
+  onSearchCustomer(){
+    this.searchCustomer.emit(this.searchCustomerString)
+  }
+  
+  onSearchEmployee(){
+    this.searchEmployee.emit(this.searchEmployeeString)
+  }
+
+  onDownloadContractCSV(contract: Contract){
+    var data = [{
+      institution: contract.institution,
+      name: contract.client.name + ' ' + contract.client.surename,
+      employees: contract.contract_administrator[0].name + ' ' + contract.contract_administrator[0].surename,   
+      date_of_creation: contract.date_of_creation,
+      date_of_validity: contract.validity_date,
+      date_of_closure: contract.date_of_closure,
+    }]
+
+    let options = {
+      title: 'Contact Details',
+      fieldSeparator: ',',
+      quoteStrings: '"',
+      decimalseparator: '.',
+      showLabels: false,
+      noDownload: false,
+      showTitle: false,
+      useBom: false,
+      headers:['Institution','Client name', 'Contract leader', 'Date of creation', 'Date of validity', 'Date of closure']
+    }
+    new ngxCsv(data, "contract", options);
+  }
+
+  onDownloadCustomerCSV(customer: Customer){
+    var data = [{
+      name: customer.name + ' ' + customer.surename,
+      emai: customer.email,
+      phone_number: customer.phone_number,
+      birth_number: customer.birth_number,
+      age: customer.age
+    }]
+
+    let options = {
+      title: 'Customer Details',
+      fieldSeparator: ',',
+      quoteStrings: '"',
+      decimalseparator: '.',
+      showLabels: false,
+      noDownload: false,
+      showTitle: false,
+      useBom: false,
+      headers:['Name','Email', 'Phone number', 'Birth number', 'Age']
+    }
+    new ngxCsv(data, customer.name + ' ' + customer.surename, options);
+  }
+
+  onDownloadEmployeeCSV(employee: Personel){
+    var data = [{
+      employee_id: employee.personel_id,
+      name: employee.name + ' ' + employee.surename,
+      emai: employee.email,
+      phone_number: employee.phone_number,
+      birth_number: employee.birth_number,
+      age: employee.age
+    }]
+
+    let options = {
+      title: 'Employee Details',
+      fieldSeparator: ',',
+      quoteStrings: '"',
+      decimalseparator: '.',
+      showLabels: false,
+      noDownload: false,
+      showTitle: false,
+      useBom: false,
+      headers:['Identification Number','Name','Email', 'Phone number', 'Birth number', 'Age']
+    }
+    new ngxCsv(data, employee.name + ' ' + employee.surename, options);
+  }
+
+
 }
