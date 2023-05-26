@@ -27,7 +27,7 @@
 					</mat-form-field>
 				</div>
 			</div>
-			<div class="grid xl:grid-cols-5 lg:grid-cols-3 md:grid-cols-2 gap-4 sm:grid-cols-1">
+			<div class="grid xl:grid-cols-5 lg:grid-cols-3 md:grid-cols-2 gap-4 sm:grid-cols-1 overflow-x-auto">
 				<button [matMenuTriggerFor]="info_pannel" *ngFor="let contract of contracts"
 					class="p-4 border-2 hover:bg-gray-300 border-orange-600 rounded-3xl w-full grid flex-cols-1 justify-center items-center">
 					<div class="text-center">Registration Number: <span

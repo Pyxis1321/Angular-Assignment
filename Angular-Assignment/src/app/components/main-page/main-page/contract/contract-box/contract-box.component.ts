@@ -68,7 +68,7 @@ export class ContractBoxComponent {
     const confirmation = this.dialog.open(DeleteConfirmationComponent, {
       width: '400px',
       data: {shouldDelete: this.shouldDelete}
-    })
+    }, )
 
     confirmation.afterClosed().subscribe(result => {
       this.shouldDelete = result;

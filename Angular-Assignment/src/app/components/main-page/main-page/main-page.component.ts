@@ -64,6 +64,7 @@ export class MainPageComponent {
   }
 
   onSearchByCustomer(customer: string){
+    this.passContracts = contracts;
     customer = customer.toLowerCase()
     if(customer === ''){
       this.passContracts = contracts;
@@ -72,7 +73,8 @@ export class MainPageComponent {
     if(customer.length > 0){
       let newContracts: Array<Contract> = [];
       for(let contract of this.passContracts){
-        if(contract.client.name.toLowerCase().includes(customer) || contract.client.surename.toLowerCase().includes(customer)){
+        let fullName = contract.client.name + ' ' +  contract.client.surename
+        if(fullName.toLowerCase().includes(customer)){
           newContracts.push(contract)
         }
       }
@@ -81,6 +83,7 @@ export class MainPageComponent {
   }
 
   onSearchContractEmployee(employeeString: string){
+    this.passContracts = contracts;
     employeeString = employeeString.toLowerCase()
     if(employeeString === ''){
       this.passContracts = contracts;
@@ -90,7 +93,8 @@ export class MainPageComponent {
       let newContracts: Array<Contract> = [];
       for(let contract of this.passContracts){
         for(let person of contract.contract_administrator){
-          if(person.name.toLowerCase().includes(employeeString) || person.surename.toLowerCase().includes(employeeString)){
+          let fullName = person.name + ' ' +  person.surename
+          if(fullName.toLowerCase().includes(employeeString)){
             newContracts.push(contract)
           }
         }
@@ -100,6 +104,7 @@ export class MainPageComponent {
   }
 
   onSearchCustomer(searchCustomer: string){
+    this.passCustomers = customers;
     searchCustomer = searchCustomer.toLowerCase()
     if(searchCustomer === ''){
       this.passCustomers = customers;
@@ -107,7 +112,8 @@ export class MainPageComponent {
 
     let newCustomers: Array<Customer> = [];
     for(let customer of this.passCustomers){
-      if(customer.name.toLowerCase().includes(searchCustomer) || customer.surename.toLowerCase().includes(searchCustomer)){
+      let fullName = customer.name + ' ' + customer.surename
+      if(fullName.toLowerCase().includes(searchCustomer)){
         newCustomers.push(customer)
       }
     }
@@ -115,6 +121,7 @@ export class MainPageComponent {
   }
 
   onSearchEmployee(searchEmployee: string){
+    this.passPersonel = personel;
     searchEmployee = searchEmployee.toLowerCase()
     if(searchEmployee === ''){
       this.passPersonel = personel;
@@ -122,7 +129,8 @@ export class MainPageComponent {
 
     let newEmployees: Array<Personel> = [];
     for(let employee of this.passPersonel){
-      if(employee.name.toLowerCase().includes(searchEmployee) || employee.surename.toLowerCase().includes(searchEmployee)){
+      let fullName = employee.name + ' ' + employee.surename
+      if(fullName.toLowerCase().includes(searchEmployee)){
         newEmployees.push(employee)
       }
     }
