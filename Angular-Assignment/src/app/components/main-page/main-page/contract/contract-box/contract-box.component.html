@@ -138,7 +138,7 @@
 									}}</span></div>
 							<div class="text-lg p-1">Age: <span class="font-bold">{{ customer.age }}</span></div>
 
-							<div class="grid grid-cols-3 gap-4 pt-5">
+							<div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-5">
 								<button (click)="onEditCustomer(customer)"
 									class="border-2 border-orange-600 p-2 rounded-full hover:bg-gray-200"><mat-icon>edit</mat-icon></button>
 								<button (click)="onDeleteCustomer(customer)"
@@ -191,7 +191,7 @@
 									}}</span>
 							</div>
 							<div class="text-lg p-1">Age: <span class="font-bold">{{ employee.age }}</span></div>
-							<div class="grid grid-cols-3 gap-4 pt-5">
+							<div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-5">
 								<button (click)="onEditEmployee(employee)"
 									class="border-2 border-orange-600 p-2 rounded-full hover:bg-gray-200"><mat-icon>edit</mat-icon></button>
 								<button (click)="onDeleteEmployee(employee)"

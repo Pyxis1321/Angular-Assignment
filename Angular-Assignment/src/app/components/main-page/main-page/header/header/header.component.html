@@ -31,7 +31,7 @@
 
 					<form [formGroup]="contractForm">
 						<div>
-							<div class="grid grid-cols-3 mx-auto justify-center justify-self-center justify-items-center">
+							<div class="grid grid-cols-1 lg:grid-cols-3 mx-auto justify-center justify-self-center justify-items-center">
 								<div class="px-10 flex flex-col">
 									<mat-form-field>
 										<mat-label>Bank</mat-label>
@@ -61,7 +61,7 @@
 									</mat-form-field>
 								</div>
 							</div>
-							<div class="grid grid-cols-3 gap-4 pt-5">
+							<div class="grid grid-cols-1 lg:grid-cols-3 gap-4 pt-5">
 								<mat-form-field>
 									<mat-label>Day of Creation</mat-label>
 									<input matInput [matDatepicker]="picker" formControlName="date_of_creation"
@@ -107,7 +107,7 @@
 					</mat-expansion-panel-header>
 					<form [formGroup]="customerForm">
 						<div>
-							<div class="grid grid-cols-3 gap-2">
+							<div class="grid grid-cols-1 lg:grid-cols-3 gap-2">
 								<div class="px-10 flex flex-col mx-auto">
 									<mat-form-field class="example-full-width">
 										<mat-label>Name</mat-label>
@@ -164,7 +164,7 @@
 					</mat-expansion-panel-header>
 					<form [formGroup]="employeeForm">
 						<div>
-							<div class="grid grid-cols-3 gap-2">
+							<div class="grid grid-cols-1 lg:grid-cols-3 gap-2">
 								<div class="px-10 flex flex-col mx-auto">
 									<mat-form-field class="example-full-width">
 										<mat-label>Name</mat-label>
