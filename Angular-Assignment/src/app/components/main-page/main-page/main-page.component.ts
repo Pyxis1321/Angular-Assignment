@@ -13,6 +13,9 @@ export class MainPageComponent {
   passCustomers: Array<Customer> = customers;
   passPersonel: Array<Personel> = personel;
 
+  /*
+    New objects are pushed to the array, would be otherwise done with push or put REST call
+  */
   saveContract(contract: Contract){
     this.passContracts.push(contract)
   }
@@ -25,6 +28,10 @@ export class MainPageComponent {
     this.passPersonel.push(employee)
   }
 
+  /*
+    First an index of the object to be deleted is searched for
+    Then the object is spliced, hence deleted
+  */
   onDeleteContract(deleteContract: Contract){
     let index = this.passContracts.findIndex(x => x.registration_number === deleteContract.registration_number)
     this.passContracts.splice(index,1)
@@ -40,6 +47,9 @@ export class MainPageComponent {
     this.passPersonel.splice(index,1)
   }
 
+  /*
+    The function loops through the array of objects if identification number fits, assign() function is used to exchange them
+  */
   onEditContract(editedContract: Contract){
     for(let contract of this.passContracts){
       if(contract.registration_number === editedContract.registration_number)
@@ -63,6 +73,13 @@ export class MainPageComponent {
     }
   }
 
+  /*
+    First the array is always reset in case user deletes one character in the search bar
+    Then a check if performed in case user deleted all the search characters
+    Once the inputed string is longer then one, function loops through the object
+    A string is made out of name and surename and then compared to the search string
+    All found instances are pushed to new array, whose content is then assigned to the original array
+  */
   onSearchByCustomer(customer: string){
     this.passContracts = contracts;
     customer = customer.toLowerCase()

@@ -56,6 +56,11 @@ export class HeaderComponent {
 
   constructor(private fm: FormBuilder,  private _snackBar: MatSnackBar) { }
 
+  /*
+    First registration_number for new contract is made
+    Then a check if new contract dates fit the criteria is made, if its false message is displayed
+    Lastly new Contract is created with the data from the FormGroup and emited to main-page
+  */
   onSaveContract() {
     if (this.contracts) {
       let lastContract = Array.from(this.contracts.values()).pop();
@@ -63,7 +68,7 @@ export class HeaderComponent {
         this.id = lastContract.registration_number;
       }
     }
-    // Bad way of doing this, simple check if(this.contractForm.value) doesnt suffice 
+    // Probalbly noy the best way of doing this, simple check if(this.contractForm.value) doesnt suffice 
     if (this.contractForm.value.institution && this.contractForm.value.customer && this.contractForm.value.employees && this.contractForm.value.date_of_creation
       && this.contractForm.value.validity_date && this.contractForm.value.date_of_closure) {
 

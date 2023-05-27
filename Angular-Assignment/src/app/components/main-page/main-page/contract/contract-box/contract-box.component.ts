@@ -48,6 +48,11 @@ export class ContractBoxComponent {
   constructor(private matBottomSheet: MatBottomSheet, public dialog: MatDialog, private _snackBar: MatSnackBar, private fm: FormBuilder){
   }
 
+  /*
+    Opens dialog window, which is component provided to .open() funciot
+    Customer data is provided
+  */
+
   openBottomSheetCustomer(selecterCustomer: Customer){
     this.matBottomSheet.open(PersonDetailComponent, {
       data: {
@@ -63,6 +68,13 @@ export class ContractBoxComponent {
       }
     });
   }
+
+  /*
+    Deletion target is passed as a function argument
+    First a dialog window is opened to confirm the deletion
+    If deletion is true emits the contract to the main-page component
+    Shows notification upon deletion
+  */
 
   onDeleteContract(contract: Contract){
     const confirmation = this.dialog.open(DeleteConfirmationComponent, {
@@ -108,6 +120,12 @@ export class ContractBoxComponent {
       }
     });
   }
+
+  /*
+    Object to edit is passed as a function argument
+    Dialog window with edit fields is opened
+    Result is subscribed to and emited to home-page
+  */
 
   onEditContract(contract: Contract){
     const confirmation = this.dialog.open(EditContractComponent, {
@@ -162,6 +180,10 @@ export class ContractBoxComponent {
     });
   }
 
+  /*
+    String passed as argument is emited to main-page
+  */
+
   onContractSearchCustomer(){
     this.searchContractCustomer.emit(this.contractSearchCustomer)
   }
@@ -177,6 +199,12 @@ export class ContractBoxComponent {
   onSearchEmployee(){
     this.searchEmployee.emit(this.searchEmployeeString)
   }
+
+  /*
+    Variable data is filled with object data passed as an argument
+    Variable optiones is for setting up the CSV
+    CSV funtion with data and options is called 
+  */
 
   onDownloadContractCSV(contract: Contract){
     var data = [{
